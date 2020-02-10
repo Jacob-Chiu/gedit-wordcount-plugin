@@ -8,8 +8,10 @@ if [ ! -d ~/.local/share/gedit/plugins ]; then
 	mkdir ~/.local/share/gedit/plugins
 fi
 
-echo remove any old version
-rm ~/.local/share/gedit/plugins/wordcount.*
+if [ -f ~/.local/share/gedit/plugins/wordcount.py ]; then 
+    echo remove any old version
+    rm ~/.local/share/gedit/plugins/wordcount.*
+fi 
 
 echo copy plugin files
 cp wordcount.plugin ~/.local/share/gedit/plugins/
