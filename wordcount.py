@@ -57,6 +57,6 @@ class WordcountPlugin(GObject.Object, Gedit.WindowActivatable):
     def update_label(self, doc):
         """update the plugins status bar label"""
         txt = get_text(doc)
-        lb = txt.count('\n')
-        msg = 'Lines: {0}, Words: {1}, Characters: {2}'.format(ln, len(WORD_RE.findall(txt)), len(txt))
+        ln = txt.count('\n')+1 if len(txt)!=0 else 0
+        msg = f'Lines: {ln}, Words: {len(WORD_RE.findall(txt))}, Characters: {len(txt)}'
         self._label.set_text(msg)

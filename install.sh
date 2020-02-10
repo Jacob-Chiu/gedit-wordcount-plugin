@@ -9,10 +9,11 @@ if [ ! -d ~/.local/share/gedit/plugins ]; then
 fi
 
 if [ -f ~/.local/share/gedit/plugins/wordcount.py ]; then 
-    echo remove any old version
+    echo Removing old version\'s files
     rm ~/.local/share/gedit/plugins/wordcount.*
 fi 
 
-echo copy plugin files
+echo Copying new plugin\'s files
 cp wordcount.plugin ~/.local/share/gedit/plugins/
 cp wordcount.py ~/.local/share/gedit/plugins/
+echo Done! 
