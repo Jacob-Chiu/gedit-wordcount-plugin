@@ -1,6 +1,5 @@
 """
-A gedit plugin which adds a Label to the status bar with the active documents 
-wordcount, where a word is definied as r"[a-zA-Z0-9]+[a-zA-Z0-9\-']*\s?"
+A gedit plugin which adds a Label to the status bar with the active document's line count, word count, and character count.
 """
 
 import re
@@ -19,8 +18,7 @@ def get_text(doc):
 
 class WordcountPlugin(GObject.Object, Gedit.WindowActivatable):
     """
-    Adds a Label to the status bar with the active documents wordcount, 
-    where a word is definied as r"[a-zA-Z0-9]+[a-zA-Z0-9\-']*\s?"
+    Adds a Label to the status bar with the active documents linecount, wordcount, and charactercount.
     """
     __gtype_name__ = "wordcount"
     window = GObject.property(type=Gedit.Window)
