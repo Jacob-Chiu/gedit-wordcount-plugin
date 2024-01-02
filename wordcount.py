@@ -5,7 +5,7 @@ A gedit plugin which adds a Label to the status bar with the active document's l
 import re
 from gi.repository import GObject, Gtk, Gedit # pylint: disable=E0611
 
-WORD_RE = re.compile(r"\w+\w*\s?", re.UNICODE)
+WORD_RE = re.compile(r"\w+[\w\-']*\s?", re.UNICODE)
 
 def get_text(doc):
     """Return the full text of the document"""
