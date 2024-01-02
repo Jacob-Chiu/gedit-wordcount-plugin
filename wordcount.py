@@ -1,6 +1,6 @@
 """
 A gedit plugin which adds a Label to the status bar with the active documents 
-linecount, wordcount, and charactercount.
+wordcount, where a word is definied as r"[a-zA-Z0-9]+[a-zA-Z0-9\-']*\s?"
 """
 
 import re
@@ -8,15 +8,19 @@ from gi.repository import GObject, Gtk, Gedit # pylint: disable=E0611
 
 WORD_RE = re.compile(r"\w+\w*\s?", re.UNICODE)
 
-
 def get_text(doc):
     """Return the full text of the document"""
-    start, end = doc.get_bounds()
+    if doc.get_has_selection():
+        start, end = doc.get_selection_bounds()
+    else:
+        start, end = doc.get_bounds()
     return doc.get_text(start, end, False)
+    
 
 class WordcountPlugin(GObject.Object, Gedit.WindowActivatable):
     """
-    Adds a Label to the status bar with the active documents linecount, wordcount, and charactercount.
+    Adds a Label to the status bar with the active documents wordcount, 
+    where a word is definied as r"[a-zA-Z0-9]+[a-zA-Z0-9\-']*\s?"
     """
     __gtype_name__ = "wordcount"
     window = GObject.property(type=Gedit.Window)
@@ -45,7 +49,7 @@ class WordcountPlugin(GObject.Object, Gedit.WindowActivatable):
         doc = self.window.get_active_document()
         if doc:
             self._doc_changed_id = (doc, 
-                doc.connect("changed", self.on_document_changed))
+                doc.connect("cursor-moved", self.on_document_changed))
             self.update_label(doc)
         else: # user closed all tabs
             self._label.set_text('')
