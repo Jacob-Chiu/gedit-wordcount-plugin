@@ -2,7 +2,7 @@ gedit-wordcount-plugin
 ======================
 
 A gedit plugin that adds a label to the status bar with the active document's line count, where a line defined as ``\n``,
-wordcount, where a word is defined as ``r"\w+[\w\-']*\s?"``, and character count.
+wordcount, where a word is defined as ``r"\w+[\w\-'’]*\s?"``, and character count.
 
 Installation
 ------------
